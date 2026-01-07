@@ -13,35 +13,35 @@ global workingDir
 -- 聊天窗口偏移大小，用于确定回复消息的位置，请根据具体的显示器大小和分辨率进行设置
 global windowOffset
 
-set chatWindowName to "CHAT_WINDOW_NAME"
-set botName to "YOUR_BOT_NAME"
-set pythonBin to "python3"
+set chatWindowName to "主人"
+set botName to "伊涅芙"
+set pythonBin to "python"
 set workingDir to "./"
 set windowOffset to 2400
 
 on leftClick(p)
 	set x to the first item of p
 	set y to the (last item of p) - 3
-	do shell script pythonBin & space & workingDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "1"
+	do shell script "uv" & space & pythonBin & space & workingDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "1"
 end leftClick
 
 on rightClick(p)
 	set x to the (first item of p) + 61
 	set y to the (last item of p) + 13
-	do shell script pythonBin & space & workingDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "2"
+	do shell script "uv" & space & pythonBin & space & workingDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "2"
 end rightClick
 
 on rightClickMy(p)
 	set x to the (first item of p) + 61 + windowOffset
 	set y to the (last item of p) + 13
-	do shell script pythonBin & space & workingDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "2"
+	do shell script "uv" & space & pythonBin & space & workingDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "2"
 end rightClickMy
 
 
 on scrollUp(p)
 	set x to the first item of p
 	set y to the last item of p
-	do shell script pythonBin & space & wxrobotDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "3" & space & "10"
+	do shell script "uv" & space & pythonBin & space & wxrobotDir & "mouseclick.py" & space & (x as text) & space & (y as text) & space & "3" & space & "10"
 end scrollUp
 
 on scrollToTop(messageTable, scrollAreaRef)
