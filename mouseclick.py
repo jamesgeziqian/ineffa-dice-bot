@@ -1,18 +1,26 @@
 import sys
-import time
-from pymouse import PyMouse
+from pynput.mouse import Button, Controller
 
-mouse = PyMouse()
 
-x, y, b = int(sys.argv[1]) + 20, int(sys.argv[2]) + 20, int(sys.argv[3])
+def main(x, y, mode):
+    mouse = Controller()
 
-if b == 3:
-	scroll_amount = int(sys.argv[4]) if len(sys.argv) > 4 else 5
-	mouse.scroll(x, y, scroll_amount)
-elif b == 4:
-	scroll_amount = int(sys.argv[4]) if len(sys.argv) > 4 else 5
-	mouse.scroll(x, y, -scroll_amount)
-else:
-	mouse.press(x, y, b)
-	time.sleep(0.1)
-	mouse.release(x, y, b)
+    if mode == 3:  # scroll up
+        scroll_amount = int(sys.argv[4]) if len(sys.argv) > 4 else 5
+        mouse.position = (x, y)
+        mouse.scroll(0, -scroll_amount)
+    elif mode == 4:  # scroll down
+        scroll_amount = int(sys.argv[4]) if len(sys.argv) > 4 else 5
+        mouse.position = (x, y)
+        mouse.scroll(0, scroll_amount)
+    else:
+        mouse.position = (x, y)
+        mouse.click(Button.left, mode)
+    # mouse.press(x, y, mode)
+    # time.sleep(0.1)
+    # mouse.release(x, y, mode)
+
+
+if __name__ == "__main__":
+    x, y, mode = int(sys.argv[1]) + 20, int(sys.argv[2]) + 20, int(sys.argv[3])
+    main(x, y, mode)
